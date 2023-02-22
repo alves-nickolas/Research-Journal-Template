@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{researchjournal}[2023/02/21 Research Journal]
+\ProvidesClass{researchjournal}[2023/02/22 Research Journal]
 
 %% OPTIONS AND LOAD CLASS
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
