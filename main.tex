@@ -1,0 +1,41 @@
+% This a LaTeX template for a research journal, aimed at 
+% being 
+% 1. easy to use, so one can simply type the daily entries;
+% 2. elegant.
+% It was written by Níckolas Alves (alves-nickolas.github.io)
+
+% THIS WAS ORIGINALLY COMPILED WITH LUALATEX, so I suggest going to the Menu (top-left of your screen, if you're on Overleaf) and selecting LuaLaTeX on Settings -> Compiler. I didn't test it on XeLaTeX, but I think it should work fine as well. While the document will still compile on pdfLaTeX, for example, it will not have access to the FiraMath font, and hence math text will look weird (it will be typeset in LaTeX's standard Computer Modern Math). If you don't plan on using mathematics at all, then there is a reasonable chance pdfLaTeX will do just fine
+
+\documentclass[a4paper, 11pt, oneside]{researchjournal} % I wrote the design using a4paper, 11pt, oneside, but feel free to change
+
+%\logo{} can be used to add a small decoration to the top of the cover page. My original idea was to put an \insergraphics command in it and load, e.g., the university logo or something
+
+\author{John Doe\\ % you can use double bars to add lines to the author decoration on the main page
+Federal University of Atlantis}
+
+% colors are customizable using xcolor's (https://ctan.org/pkg/xcolor) \definecolor
+\definecolor{ChapterBackground}{HTML}{101010} %colors to use on chapters
+\definecolor{ChapterForeground}{HTML}{e93820} %colors to use on chapters
+\definecolor{DayColor}{HTML}{df2d16} %colors to use on newdays and daybibs
+\definecolor{CoverBackground}{HTML}{101010} %cover background
+\definecolor{CoverForeground}{HTML}{e93820} %cover letters
+\definecolor{LinkColor}{HTML}{eb5a00} %color for links
+
+\begin{document} % this will automatically generate a simple cover
+\newday{2022-12-25} \verb|\newday| is the main command provided by the \verb|researchjournal| class. It receives a single argument: a date in the \verb|yyyy-mm-dd| format. Issuing it will automatically generate the necessary chapter and sections for the year and month, respectively. This happens in addition to issuing a subsection for the specific day. The command creates the new chapter and section by comparing the date it received to the previous date issued by the user. It also checks for chronological order and for repeated days, but it can't do much about it. At most, you will get a class warning to let you know your entries are out of order. The chapter and section creation facilities do assume you are typing your entries in chronological order, so you might not get a new chapter if you type a previous year. % newday is the main command provided by the class. It inserts a daily entry and automatically checks whether it is necessary to create a new chapter (due to a new year) or a new section (due to a new month). Its sole argument is a date in the format yyyy-mm-dd. Issue the command, then write as you will in front of it.
+
+\newday{2023-01-27} Notice how writing a new day on a different year automatically creates a new chapter. Below this entry, I'm showing an example of the \verb|daybib| command. It simply prints ``References:'' in a cute manner, without any other fancy functionalities. I use it to list some references that I used throughout the day, but didn't want to list in the main paragraph (perhaps because I barely checked them, or just didn't have much to comment about them). I like to keep a comprehensive list of references so I can later check on them if I ever get a feeling like ``I once read a paper that discussed this, but what was it called again?'' % notice how a new year automatically creates a new chapter
+\daybib\cite{weinberg1995Foundations,weinberg1996ModernApplications}. %daybib adds the text "References: " underneath the entry. It just prints text without doing anything fancy. I use it to list references that I used on some given day, but didn't make it to the main paragraph. Notice I manually added a period at the end of the line.
+
+\newday{2023-01-28} Let us add a bit more text in here just to have a larger paragraph to work as an example. Most of my personal entries typically describe what I did in that particular day in general terms, such as ``I finished writing Section 2.3 of my thesis'', or ``Read the paper by \textcite{hawking1975ParticleCreationBlack} and really enjoyed it''. The idea is mostly to have a short and general description of how the day went so that I can recall it later when, for example, writing a report.
+
+\newday{2023-02-12} New day, new text. Notice how the new month automatically generates a new section. 
+\daybib\cite{wald1984GeneralRelativity}.
+
+\newday*{2023-02-13} If you type \verb|\newday*{yyyy-mm-dd}| (with an asterisk), the output will also include a star. I typically use this feature to tag the days in which I had meetings with my advisor, but at the end of the day it is completely up to you. Maybe you use to tag happy days or something. 
+
+\newday{2023-03-02} Notice how the headers work as a dictionary guide. The left header indicates the first entry on the page, while the right header indicates the last. 
+
+\newday{2023-03-03} References are dealt with using \verb|biblatex|. You can add your own my modifying the file \verb|bib.bib|.
+
+\end{document} % this will automatically generate a references chapter if you cited any references throughout the text
